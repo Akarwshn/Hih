@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Evaluasi Nilai Mahasiswa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    #hasil {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background-color: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Evaluasi Nilai Mahasiswa</h2>
+
+  <label>Nama Mahasiswa:
+    <input type="text" id="nama">
+  </label>
+
+  <label>NIM:
+    <input type="text" id="nim">
+  </label>
+
+  <label>Nilai Ujian (0-100):
+    <input type="number" id="nilai" min="0" max="100">
+  </label>
+
+  <button onclick="proses()">Submit</button>
+
+  <div id="hasil"></div>
+
+  <script>
+    function proses() {
+      const nama = document.getElementById("nama").value;
+      const nim = document.getElementById("nim").value;
+      const nilaiStr = document.getElementById("nilai").value;
+      const nilai = parseInt(nilaiStr);
+
+      let kategori = "";
+      if (nilai >= 85 && nilai <= 100) {
+        kategori = "A (Sangat Baik)";
+      } else if (nilai >= 75) {
+        kategori = "B (Baik)";
+      } else if (nilai >= 60) {
+        kategori = "C (Cukup)";
+      } else if (nilai >= 40) {
+        kategori = "D (Kurang)";
+      } else {
+        kategori = "E (Sangat Kurang)";
+      }
+
+      const hasilHTML = `
+        <strong>Nama:</strong> ${nama} (type: ${typeof nama})<br>
+        <strong>NIM:</strong> ${nim} (type: ${typeof nim})<br>
+        <strong>Nilai:</strong> ${nilai} (type: ${typeof nilai})<br><br>
+
+        <strong>Hasil Evaluasi:</strong><br>
+        Mahasiswa: ${nama} (NIM: ${nim})<br>
+        Nilai Ujian: ${nilai}<br>
+        Kategori Nilai: ${kategori}
+      `;
+
+      document.getElementById("hasil").innerHTML = hasilHTML;
+    }
+  </script>
+
+</body>
+</html>
